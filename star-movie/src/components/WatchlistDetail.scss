@@ -1,0 +1,19 @@
+.movie-item {
+    background-color: #EDE9E8;
+    height: 320px;
+    width: 820px;
+    margin: 15px;
+    //background: var(--secondary-color);
+    cursor: pointer;
+    .inner {
+       // display: flex;
+        align-items: center;
+        justify-content: center
+    }
+}
+
+ .image img  {
+    max-width: 25%;
+    max-height:15%;
+    float: left;
+}
