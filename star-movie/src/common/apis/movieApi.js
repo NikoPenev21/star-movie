@@ -1,5 +1,9 @@
 import axios from 'axios';
 
-export default axios.create({
+export const LoadMoviesApi = axios.create({ //discover api
     baseURL: 'https://api.themoviedb.org/3/discover/'
+})
+
+export const SearchMoviesApi = axios.create({ //search api
+    baseURL: 'https://api.themoviedb.org/3/search/'
 })

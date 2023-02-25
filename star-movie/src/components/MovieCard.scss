@@ -1,15 +1,16 @@
 .card-item {
-    height: 480px;
-    width: 200px;
+    min-height: 480px;
+    min-width: 200px;
     margin: 15px;
     background: var(--secondary-color);
-    cursor: pointer;
+    flex: 1 1 0;
 }
 
 .card-top {
     img {
         width: 100%;
         height: 100%;
+        cursor: pointer;
     }
 }
 
@@ -38,9 +39,19 @@
     }
 }
 
+.remove-rating-button {
+    margin: 0 auto;
+    width: 130px;
+    margin-bottom: 10px;
+    border: none;
+}
+
+.modal-dialog .modal-content .modal-footer {
+    padding-bottom: 10px;
+}
+
 .rating-number {
     vertical-align: middle;
-    display: inline-block;
 }
 
 .card-info {
@@ -77,3 +88,52 @@
         color: #fff;
     }
 }
+
+.more-info-modal {
+    .modal-body {
+        padding: 1.4rem;
+    }
+
+    .modal-dialog {
+        max-width: 445px;
+        .modal-content {
+            padding: 12px;
+        }
+    }
+
+    .image-container {
+        text-align: center;
+        img.more-info-img {
+            width: 240px;
+            height: auto;
+          }
+    }
+
+    .more-info-card-content {
+        margin-bottom: 15px;
+
+        .card-title {
+            text-align: center;
+        }
+    
+        .release-date {
+            color: #73b5f3;
+        }
+    
+        .movie-overview {
+            color: var(--font-primary);
+        }
+        .card-rating {
+            margin: 12px 0px;
+            .rating-number {
+                color: #73b5f3;
+            }
+        }
+    }
+    
+}
+
+
+
+
+

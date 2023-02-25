@@ -3,7 +3,8 @@ import './StarRating.scss'
 
 const StarRating = (props) => {
     const {starFunction} = props;
-    const [rating, setRating] = useState(0);
+
+    const [rating, setRating] = useState(props.currentRating);
     const [hover, setHover] = useState(0);
 
     const setAndPassRating = (index) => { 

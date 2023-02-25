@@ -6,4 +6,7 @@
     align-items: center;
     color: var(--primary-color);
     flex-direction: column;
+    div {
+        color: var(--font-primary);
+    }
 }
