@@ -6,7 +6,6 @@ import { useState } from "react"
 import Modal from 'react-bootstrap/Modal'
 import StarRating from './StarRating'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToWatchlist, getWatchlist } from '../features/movies/movieSlice'
 import { addWatchlistAction, RemoveFromWatchlistAction } from '../redux/Actions'
 import nophoto from '../images/nophoto.jpg';
 
@@ -17,13 +16,12 @@ const MovieCard = (props) => {
   const dispatch = useDispatch();
 
   const { data } = props;
-  const initialRatings = JSON.parse(localStorage.getItem(`ratings-${data.id}`) || "[]");
-  const[rating, setRating] = useState(initialRatings)
+  const initialRatings = JSON.parse(localStorage.getItem(`ratings-${data.id}`));
+  const[rating, setRating] = useState(initialRatings);
   
 
   const [show, setShow] = useState(false);
   const [moreInfoshow, setMoreInfoShow] = useState(false);
-  const [pressed, setPressed] = useState(false);
 
   const handleRateModalClose = () => { setShow(false); }
   const handleRateModalShow = () => setShow(true);
@@ -34,11 +32,12 @@ const MovieCard = (props) => {
 
   useEffect(() => {
     localStorage.setItem(`ratings-${data.id}`, JSON.stringify(rating));
+    console.log("rating", rating)
+
   }, [rating, data.id])
 
 
   const handleRate = () => {
-    //setRating(index);
     setShow(false);
   }
 
@@ -69,10 +68,10 @@ const MovieCard = (props) => {
           </div>
           <div className='card-bottom'>
             <div className='rating-star-group'>
-            <span><Icon.StarFill color="#f5c518"/>{' '}<span className='rating-number'>{data.vote_average}</span></span>
-            {!rating ? 
-            <Button onClick={handleRateModalShow} variant="outline-light" className='rate-button'><Icon.Star color="#5799ef"/></Button> : 
-            <span onClick={handleRateModalShow}className='rating-span'><Icon.StarFill color="#5799ef"/>{' '}<span className='rating-number'>{rating}</span></span>}
+              <span><Icon.StarFill color="#f5c518"/>{' '}<span className='rating-number'>{data.vote_average}</span></span>
+              {!rating ? 
+              <Button onClick={handleRateModalShow} variant="outline-light" className='rate-button'><Icon.Star color="#5799ef"/></Button> : 
+              <span onClick={handleRateModalShow} className='rating-span'><Icon.StarFill color="#5799ef"/>{' '}<span className='rating-number'>{rating}</span></span>}
             </div>
             <div className='card-info'>
               <h4 className='movie-title'>{data.title}</h4>
@@ -94,13 +93,16 @@ const MovieCard = (props) => {
           <div className='more-info-card-content'>
             <div className='card-title'>{data.title}</div>
             <div className='release-date'>Premier date: {data.release_date}</div>
-            <div className='card-rating'><span className='rating-span'><Icon.StarFill color="#5799ef"/>{' '}<span className='rating-number'>{data.vote_average} of {data.vote_count} votes</span></span></div>
+            <div className='card-rating'><span className='rating-span'><Icon.StarFill color="#f5c518"/>{' '}<span className='rating-number'>{data.vote_average} of {data.vote_count} votes</span></span></div>
             <div className='movie-overview'>{data.overview}</div>
           </div>
         </Modal.Body>
       </Modal>
 
-      <Modal show={show} onHide={handleRateModalClose}>
+      <Modal 
+        show={show} 
+        onHide={handleRateModalClose}
+        dialogClassName='rate-modal'>
         <Modal.Header closeButton>
           <Modal.Title><div className='rate-this'>Rate this:</div><p className='title'>{data.title}</p></Modal.Title>
         </Modal.Header>
@@ -111,8 +113,8 @@ const MovieCard = (props) => {
           <Button className="rate-close-button" variant="warning" onClick={handleRate}>
             Rate
           </Button>
+          { rating ?<Button className="remove-rating-button" variant="outline-light" onClick={removeRate}>Remove rating</Button> : null}
         </Modal.Footer>
-        { rating ?<Button className="remove-rating-button" variant="outline-light" onClick={removeRate}>Remove rating</Button> : null}
       </Modal>
     </>
   )
