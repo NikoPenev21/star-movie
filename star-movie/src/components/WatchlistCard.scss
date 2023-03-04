@@ -1,40 +1,33 @@
 .watchlist-container {
-    display: inline-block;
-    .movie-item {
-        background-color: #F0F0F0;
-        border-bottom: 1px solid #cccccc;
-        padding: 5px 5px;
-        float: left;
-        width: 800px;
-        height: auto;
-        box-sizing: border-box;
-        margin: 0;
-        .card-inner {
-            position: relative;
-            .add-watchlist {
-                position: absolute;
-                left: 0;
-            }
-            .card-rating {
-                margin-bottom: 40px;
-            }
-        }
-        .card-inner img {
+  .movie-item {
+      background-color: #F0F0F0;
+      border-bottom: 1px solid #cccccc;
+      padding: 5px 5px;
+      width: 800px;
+      .card-inner {
+          position: relative;
+          .add-watchlist {
+              position: absolute;
+              left: 0;
+          }
+          .card-rating {
+              margin-bottom: 40px;
+          }
+          img {
             width: 180px;
             height: auto;
           }
+          .card-title {
+            font-size: 20px;
+            padding-top: 15px;
+            color: #F5C518;
+          }
+          .card-content {
+            color: black;
+            min-height: 100%;
+            width: 75%;
+            float: right;
+          }
       }
+    }
 }
-
-  .card-content {
-    color: black;
-    min-height: 100%; /*replace this it in width: 100%*/
-    width: 75%;
-    float: right;
-  }
-
-  .card-title {
-    font-size: 20px;
-    padding-top: 15px;
-    color: #F5C518;
-  }

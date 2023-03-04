@@ -4,7 +4,6 @@ import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-// import { store } from './features/store'
 import { allReducers } from './redux/allReducers';
 import { createStore } from 'redux';
 

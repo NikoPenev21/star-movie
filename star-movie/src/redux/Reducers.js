@@ -34,15 +34,16 @@ export const moviesReducer = (state = initialState, action) => {
 				foundMovies: newFoundMovies,
 			};
 		case actions.ADD_TO_WATCHLIST:
-			const newMovie = [action.payload, ...state.watchlist];
-			window.localStorage.setItem('watchlist', JSON.stringify(newMovie));
+			const newMovies = [action.payload, ...state.watchlist];
+			window.localStorage.setItem('watchlist', JSON.stringify(newMovies));
 			return {
 				...state,
-				watchlist: newMovie,
+				watchlist: newMovies,
 			};
 		case actions.REMOVE_FROM_WATCHLIST:
 			const originalWatch = state.watchlist;
 			const filtredWatch = originalWatch.filter((f) => f.id !== action.payload);
+			window.localStorage.setItem('watchlist', JSON.stringify(filtredWatch));
 			return {
 				...state,
 				watchlist: filtredWatch,
