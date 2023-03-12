@@ -3,14 +3,18 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
-import MovieDetail from './components/MovieCard';
 import PageNotFound from './components/PageNotFound';
-import Watchlist from './components/Watchlist'
+import ScrollToTop from './components/ScrollToTop'
+import MovieDetail from './features/movies/MovieCard';
+import Watchlist from './features/watchlist/Watchlist'
 
 function App() {
     return (
      <div className='app'>
       <Router>
+        {/* The following ScrollToTop custom component is needed to scroll the page to top on each history location change. 
+        This ensures that the lazy load logic doesn't get stuck and update pages indefinitely on page change */}
+      <ScrollToTop /> 
         <Header />
             <Switch>
               <Route path="/" exact component={Home} />

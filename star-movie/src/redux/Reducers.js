@@ -11,13 +11,11 @@ const initialState = {
 export const moviesReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case actions.FETCH_MOVIES:
-			console.log("FETCH_MOVIES action.payload" ,action.payload)
 			return {
 				...state,
 				movies: action.payload,
 			};
         case actions.FETCH_MORE_MOVIES:
-			console.log("FETCH_MORE_MOVIES action.payload" ,action.payload)
             const loadedMovies = state.movies;
             const newBatchMovies = [...loadedMovies, ...action.payload]
             return {
@@ -25,8 +23,6 @@ export const moviesReducer = (state = initialState, action) => {
                 movies: newBatchMovies,
             };
 		case actions.SEARCH_MOVIES:
-			console.log("SEARCH_MOVIES action.payload" ,action.payload)
-			console.log("state", state)
 			const searchedMovies = state.foundMovies;
             const newFoundMovies = [...searchedMovies, ...action.payload]
 			return {

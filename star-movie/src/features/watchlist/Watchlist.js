@@ -4,7 +4,6 @@ import './Watchlist.scss'
 import WatchlistCard from './WatchlistCard'
 
 const Watchlist = () => {
-  //const watchlist = useSelector(getWatchlist)
   const { watchlist } = useSelector((state) => state.movies);
 
   return (

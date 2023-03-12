@@ -1,24 +1,26 @@
-import React, {useEffect, useReducer} from 'react'
+import React, {useEffect} from 'react'
 import './MovieCard.scss'
 import * as Icon from 'react-bootstrap-icons'
 import Button from 'react-bootstrap/Button'
 import { useState } from "react"
 import Modal from 'react-bootstrap/Modal'
-import StarRating from './StarRating'
+import StarRating from '../starRating/StarRating'
 import { useDispatch, useSelector } from 'react-redux'
-import { addWatchlistAction, RemoveFromWatchlistAction } from '../redux/Actions'
-import nophoto from '../images/nophoto.jpg';
-
-const IMGPATH = "https://image.tmdb.org/t/p/w1280"
+import { addWatchlistAction, RemoveFromWatchlistAction } from '../../redux/Actions'
+import nophoto from '../../images/nophoto.jpg'
+import { IMGPATH } from '../../common/constants'
 
 const MovieCard = (props) => {
-  const {movies, watchlist} = useSelector((state) => state.movies);
+  const { watchlist } = useSelector((state) => state.movies);
   const dispatch = useDispatch();
 
   const { data } = props;
   const initialRatings = JSON.parse(localStorage.getItem(`ratings-${data.id}`));
   const[rating, setRating] = useState(initialRatings);
   
+  // formatting movie premier date
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const premierDate = new Date(data.release_date).toLocaleDateString("en-GB", options)
 
   const [show, setShow] = useState(false);
   const [moreInfoshow, setMoreInfoShow] = useState(false);
@@ -32,7 +34,6 @@ const MovieCard = (props) => {
 
   useEffect(() => {
     localStorage.setItem(`ratings-${data.id}`, JSON.stringify(rating));
-    console.log("rating", rating)
 
   }, [rating, data.id])
 
@@ -92,7 +93,7 @@ const MovieCard = (props) => {
           </div>
           <div className='more-info-card-content'>
             <div className='card-title'>{data.title}</div>
-            <div className='release-date'>Premier date: {data.release_date}</div>
+            <div className='release-date'>Premier date: {premierDate}</div>
             <div className='card-rating'><span className='rating-span'><Icon.StarFill color="#f5c518"/>{' '}<span className='rating-number'>{data.vote_average} of {data.vote_count} votes</span></span></div>
             <div className='movie-overview'>{data.overview}</div>
           </div>
