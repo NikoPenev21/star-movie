@@ -14,7 +14,7 @@ const PageNotFound = () => {
         <div className='info'>
           <h2>We can't find that page</h2>
           <p>We're fairly sure that page used to be here, but seems to have gone missing. We do apologise on it's behalf.</p>
-          <a href="https://www.w3schools.com">Home</a>
+          <a href="/">Home</a>
         </div>
     </div>
   )
